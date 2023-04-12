@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>User Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar p-0 navbar-expand-lg navbar-dark bg-dark text-light">
+    <div class="container-fluid">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item p-1">
+                <h5 class="m-0"><span class="nav-text" th:text="${user.getEmail()}">email</span></h5>
+            </li>
+            <li class="nav-item p-1">
+                <h5 class="m-0"><span class="nav-text">with roles: </span></h5>
+            </li>
+            <li class="nav-item p-1" th:each="role : ${user.getRoles()}">
+                <h5 class="m-0"><span class="nav-text" th:inline="text">[[${role}]]</span></h5>
+            </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item p-2">
+                <a class="nav-link" href="/logout">logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid p-0 m-0">
+    <div class="row">
+
+            <div class="nav col-2 nav-pills me-auto p-0 d-flex align-items-start" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <button class="nav-link w-100 active" id="v-pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-user" type="button" role="tab" aria-controls="v-pills-profile"
+                        aria-selected="false">User
+                </button>
+            </div>
+
+        <div class="tab-content col-10 p-0" id="v-pills-tabContent">
+            <div class="tab-pane p-4 fade show active bg-light" id="v-pills-user" role="tabpanel"
+                 aria-labelledby="v-pills-profile-tab">
+                <h1>User information-page</h1>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>About user</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped text-center align-middle">
+                            <tr>
+                                <th>ID</th>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Age</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                            </tr>
+                            <tr>
+                                <td th:text="${user.getId()}">ID</td>
+                                <td th:text="${user.getUsername()}">First name</td>
+                                <td th:text="${user.getLastname()}">Last name</td>
+                                <td th:text="${user.getAge()}">Age</td>
+                                <td th:text="${user.getEmail()}">Email</td>
+                                <td>
+                                    <div class="h-100 d-inline-block" th:each="role : ${user.getRoles()}">
+                                        <span th:inline="text">[[${role}]]</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
