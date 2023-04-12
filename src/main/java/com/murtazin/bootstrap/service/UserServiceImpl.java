@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -29,16 +30,19 @@ public class UserServiceImpl implements UserService{
         return userRepo.findAll();
     }
 
+    @Transactional
     @Override
     public void addUser(User user) {
         userRepo.save(user);
     }
 
+    @Transactional
     @Override
     public void update(User updatedUser) {
         userRepo.save(updatedUser);
     }
 
+    @Transactional
     @Override
     public void delete(User user) {
         userRepo.delete(user);
