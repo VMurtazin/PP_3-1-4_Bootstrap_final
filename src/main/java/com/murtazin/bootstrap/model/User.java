@@ -1,5 +1,7 @@
 package com.murtazin.bootstrap.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +23,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
     @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
     private Set<Role> roles;
 
     public User() {
